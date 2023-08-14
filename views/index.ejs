@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+
+        <title>To Do List </title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Victor+Mono:wght@100&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/main.css">
+    </head>
+
+    <body>
+        <div class="first">
+
+            <a href="/">Daily To Do's</a>
+
+            <a href="/work">Work To Do's</a>
+        </div>
+
+
+
+
+        <div class="second">
+
+
+
+
+           
+                <label class="daily" >
+                    <% if(locals.day && locals.update){  %>
+                    <%= `${day} ${update} `%>
+                    <br>
+                    <% } %>
+                    
+                    <%=`      ${title} `%>
+                   
+                </label>
+                    <hr>
+            
+<form action="/delete" method="post">
+            <div class="element">
+
+                <% daily.forEach(element=> {%>
+                     <input   type="checkbox" name="check_name" value="<%= element._id %>" class="check" style="display: inline;" onchange="this.form.submit()">
+
+                    <p class="clsele" style="display: inline;">
+                        
+                       <%= element.name %> 
+                    </p>
+                    <br><br><br>
+
+
+                    <% }); %>
+</form>
+                <form class="formclass" action="/submit" method="post">
+                    <input class="in" type="text" name="dailywork" placeholder="   Enter your work" required>
+                    <button class="but" type="submit" name="listname" value="<%= title %>" >+</button>
+                </form>
+            </div>
+
+
+
+
+
+        </div>
+        <%- include("footer.ejs") %>
+    </body>
+
+</html>
